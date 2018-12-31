@@ -6,11 +6,7 @@ import com.spring5.springpetclinic.model.Owner;
 import java.lang.management.LockInfo;
 import java.util.Set;
 
-public interface OwnerService  {
+public interface OwnerService extends CRUDService<Owner, Long> {
 
     Owner findByLastName(String lastName);
-    Owner findById(Long Id);
-    Owner save(Owner owner);
-    Set<Owner> findAll();
-
 }
