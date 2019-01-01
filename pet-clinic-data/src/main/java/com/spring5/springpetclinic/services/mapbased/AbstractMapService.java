@@ -2,21 +2,21 @@ package com.spring5.springpetclinic.services.mapbased;
 
 import com.spring5.springpetclinic.services.CRUDService;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-public  abstract class AbstractMapService <T, ID>   {
+public  abstract class AbstractMapService <T, ID extends Long>   {
 
-    protected HashMap<ID, T> map = new HashMap();
+    private long elementCounter=1;
+
+    //protected HashMap<ID, T> map = new HashMap();
+    protected HashMap<Long, T> map = new HashMap();
 
 
-     T save(ID id , T entity) {
+     T save( T entity) {
 
-        map.put(id,entity);
+        map.put(getNextId(),entity);
 
-        return map.get(id);
+        return entity;
     }
 
 
@@ -40,5 +40,12 @@ public  abstract class AbstractMapService <T, ID>   {
      void deleteById(ID id) {
 
         map.remove(id);
+    }
+
+    private Long getNextId ()
+    {
+
+                return  elementCounter++;
+
     }
 }

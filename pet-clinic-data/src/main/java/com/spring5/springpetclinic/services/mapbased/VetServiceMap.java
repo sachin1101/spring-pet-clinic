@@ -11,7 +11,7 @@ import java.util.Set;
 public class VetServiceMap extends AbstractMapService<Vet,Long> implements VetService {
     @Override
     public Vet save(Vet entity) {
-        super.save(entity.getId(),entity);
+        super.save(entity);
         return super.findById(entity.getId());
     }
 
