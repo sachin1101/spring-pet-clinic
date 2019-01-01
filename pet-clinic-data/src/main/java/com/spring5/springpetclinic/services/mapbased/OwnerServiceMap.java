@@ -2,10 +2,13 @@ package com.spring5.springpetclinic.services.mapbased;
 
 import com.spring5.springpetclinic.model.Owner;
 import com.spring5.springpetclinic.services.CRUDService;
+import com.spring5.springpetclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CRUDService<Owner, Long> {
+@Service
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     public Owner save(Owner entity) {
         return super.save(entity.getId(), entity);
@@ -29,5 +32,10 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     public void delete(Owner entity) {
 
         super.delete(entity);
+    }
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
     }
 }

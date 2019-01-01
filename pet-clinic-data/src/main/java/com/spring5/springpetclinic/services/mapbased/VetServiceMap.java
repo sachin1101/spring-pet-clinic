@@ -2,13 +2,17 @@ package com.spring5.springpetclinic.services.mapbased;
 
 import com.spring5.springpetclinic.model.Vet;
 import com.spring5.springpetclinic.services.CRUDService;
+import com.spring5.springpetclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet,Long> implements CRUDService<Vet, Long> {
+@Service
+public class VetServiceMap extends AbstractMapService<Vet,Long> implements VetService {
     @Override
     public Vet save(Vet entity) {
-        return null;
+        super.save(entity.getId(),entity);
+        return super.findById(entity.getId());
     }
 
     @Override
@@ -30,5 +34,10 @@ public class VetServiceMap extends AbstractMapService<Vet,Long> implements CRUDS
     @Override
     public void delete(Vet entity) {
         super.delete(entity);
+    }
+
+    @Override
+    public Vet findByLastName(String lastName) {
+        return null;
     }
 }
