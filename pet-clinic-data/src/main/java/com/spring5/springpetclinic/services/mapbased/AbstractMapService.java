@@ -1,12 +1,12 @@
 package com.spring5.springpetclinic.services.mapbased;
 
+import com.spring5.springpetclinic.model.BaseEntity;
 import com.spring5.springpetclinic.services.CRUDService;
 
 import java.util.*;
 
-public  abstract class AbstractMapService <T, ID extends Long>   {
+public  abstract class AbstractMapService <T extends BaseEntity, ID extends Long>   {
 
-    private long elementCounter=1;
 
     //protected HashMap<ID, T> map = new HashMap();
     protected HashMap<Long, T> map = new HashMap();
@@ -14,7 +14,18 @@ public  abstract class AbstractMapService <T, ID extends Long>   {
 
      T save( T entity) {
 
-        map.put(getNextId(),entity);
+         if(entity!=null)
+         {
+             if(entity.getId()==null)
+             {
+                 entity.setId(getNextId());
+             }
+             map.put(getNextId(),entity);
+         }else
+         {
+             throw new IllegalArgumentException(" Input is null in the Save method");
+         }
+
 
         return entity;
     }
@@ -44,8 +55,14 @@ public  abstract class AbstractMapService <T, ID extends Long>   {
 
     private Long getNextId ()
     {
+        try {
+            return Collections.max(map.keySet()) + 1L;
+        }catch (NoSuchElementException e)
+        {
+            return 1L;
+        }
 
-                return  elementCounter++;
+
 
     }
 }
