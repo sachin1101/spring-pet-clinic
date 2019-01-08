@@ -1,6 +1,7 @@
 package com.spring5.springpetclinic.bootstrap;
 
 import com.spring5.springpetclinic.model.Owner;
+import com.spring5.springpetclinic.model.Pet;
 import com.spring5.springpetclinic.model.PetType;
 import com.spring5.springpetclinic.model.Vet;
 import com.spring5.springpetclinic.services.OwnerService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -49,11 +51,25 @@ public class DataLoader implements CommandLineRunner {
 
         Owner owner1 = new Owner();
 
+
+
+
         owner1.setId(1L);
         owner1.setFirstName("Lauren");
         owner1.setLastName("Marget");
+        owner1.setStreet("1223 Speed Ln");
+        owner1.setCity("Allentown");
+        owner1.setTelphone("4648624112");
 
 
+        Pet [] tommy = {new Pet()};
+
+        tommy[0].setPetType(Pet.PET_TYPE.DOG);
+        tommy[0].setBirthDate(LocalDate.now());
+        tommy[0].setOwner(owner1);
+
+
+        owner1.setPets(new HashSet<Pet>(Arrays.asList(tommy)));
         this.ownerService.save(owner1);
 
         Owner owner2 = new Owner();
@@ -61,6 +77,11 @@ public class DataLoader implements CommandLineRunner {
         owner2.setId(2L);
         owner2.setFirstName("Ashley");
         owner2.setLastName("Ramsen");
+
+        owner2.setStreet("1405 Brick Dr");
+        owner2.setCity("Allentown");
+        owner2.setTelphone("4648624112");
+
         this.ownerService.save(owner2);
 
         System.out.println("Loaded Owners... " + ownerService.findAll().stream().count());

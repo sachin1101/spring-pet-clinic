@@ -4,16 +4,26 @@ import java.time.LocalDate;
 
 public class Pet extends  BaseEntity {
 
-    private PetType petType;
+
+    public enum PET_TYPE {
+        CAT,
+        DOG,
+        RABBIT,
+        TURTLE,
+        ANIMAL
+    };
+
+
+    private PET_TYPE petType =PET_TYPE.ANIMAL;
     private Owner owner;
 
     private LocalDate birthDate;
 
-    public PetType getPetType() {
+    public PET_TYPE getPetType() {
         return petType;
     }
 
-    public void setPetType(PetType petType) {
+    public void setPetType(PET_TYPE petType) {
         this.petType = petType;
     }
 
