@@ -11,6 +11,7 @@ public class IndexController {
 public String indexPage(Model model)
 {
 
+    model.addAttribute("welcome", "Welcome to the Pet Clinic");
      return  "index";
  }
 }
