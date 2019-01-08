@@ -1,8 +1,10 @@
 package com.spring5.springpetclinic.bootstrap;
 
 import com.spring5.springpetclinic.model.Owner;
+import com.spring5.springpetclinic.model.PetType;
 import com.spring5.springpetclinic.model.Vet;
 import com.spring5.springpetclinic.services.OwnerService;
+import com.spring5.springpetclinic.services.PetTypeService;
 import com.spring5.springpetclinic.services.VetService;
 import com.spring5.springpetclinic.services.mapbased.OwnerServiceMap;
 import com.spring5.springpetclinic.services.mapbased.VetServiceMap;
@@ -10,26 +12,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 @Component
 public class DataLoader implements CommandLineRunner {
 
     private OwnerService ownerService;
     private VetService vetService;
+    private PetTypeService petTypeService;
 
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
+
 
     @Override
     public void run(String... args) throws Exception {
+
+
+        PetType dog = new PetType();
+        dog.setName("dog");
+
+        PetType savedDogPetType = petTypeService.save(dog);
+
+        PetType cat = new PetType();
+        dog.setName("cat");
+
+        PetType savedCatPetType = petTypeService.save(dog);
+
+
+        PetType [] petArr = {savedDogPetType, savedCatPetType};
 
         Owner owner1 = new Owner();
 
         owner1.setId(1L);
         owner1.setFirstName("Lauren");
         owner1.setLastName("Marget");
+
 
         this.ownerService.save(owner1);
 
