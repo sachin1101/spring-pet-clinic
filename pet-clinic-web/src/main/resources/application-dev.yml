@@ -1,3 +1,11 @@
 logging:
   level:
     log4j.logger.org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: debug
+
+spring:
+  messages:
+    basename: messages/messages
+server:
+  port: 9090
+
+

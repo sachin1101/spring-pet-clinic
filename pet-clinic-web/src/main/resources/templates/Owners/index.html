@@ -14,14 +14,49 @@
         <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Pet Name</th>
+        <th>Pet type</th>
     </tr>
     </thead>
     <tbody>
-    <tr  th:each="owner : ${owners}">
-        <td th:text="${owner.id}">1</td>
-        <td th:text="${owner.firstName}">firstName</td>
-        <td th:text="${owner.lastName}">lastName</td>
-    </tr>
+        <th:block  th:each="owner : ${owners}">
+            <div th:with="ownerid=${owner.id} , firstName=${owner.firstName}, lastName=${owner.lastName}" >
+
+
+                <div th:if= "${owner.pets != null}">
+
+                <div th:each="ownerPet : ${owner.pets}">
+                    <tr>
+                    <td th:text="${ownerid}">1</td>
+                    <td th:text="${firstName}">firstName</td>
+                    <td th:text="${lastName}">lastName</td>
+                    <td th:text="${ownerPet.name}">lastName</td>
+                    <td th:text="${ownerPet.petType}">lastName</td>
+                    </tr>
+
+
+
+                </div>
+            </div>
+
+            <div th:if= "${owner.pets == null}">
+                <tr>
+                <td th:text="${ownerid}">1</td>
+                <td th:text="${firstName}">firstName</td>
+                <td th:text="${lastName}">lastName</td>
+                <td >&nbsp;</td>
+                <td >&nbsp;</td>
+                </tr>
+            </div>
+
+            </div>
+
+        </th:block>
+
+
+
+
+
     </tbody>
 </table>
 

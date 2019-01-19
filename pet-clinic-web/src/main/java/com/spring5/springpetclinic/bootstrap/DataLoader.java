@@ -62,14 +62,22 @@ public class DataLoader implements CommandLineRunner {
         owner1.setTelphone("4648624112");
 
 
-        Pet [] tommy = {new Pet()};
+        Pet [] petArray = {new Pet(), new Pet()};
 
-        tommy[0].setPetType(Pet.PET_TYPE.DOG);
-        tommy[0].setBirthDate(LocalDate.now());
-        tommy[0].setOwner(owner1);
+        petArray[0].setPetType(Pet.PET_TYPE.DOG);
+        petArray[0].setBirthDate(LocalDate.now());
+        petArray[0].setOwner(owner1);
+        petArray[0].setName("Tommy");
 
+        petArray[1].setPetType(Pet.PET_TYPE.CAT);
+        petArray[1].setBirthDate(LocalDate.now());
+        petArray[1].setOwner(owner1);
+        petArray[1].setName("Katty");
 
-        owner1.setPets(new HashSet<Pet>(Arrays.asList(tommy)));
+        petArray[0].setOwner(owner1);
+        petArray[1].setOwner(owner1);
+
+        owner1.setPets(new HashSet<Pet>(Arrays.asList(petArray)));
         this.ownerService.save(owner1);
 
         Owner owner2 = new Owner();
