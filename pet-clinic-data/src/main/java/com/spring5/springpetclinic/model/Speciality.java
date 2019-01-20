@@ -4,6 +4,10 @@ public class Speciality extends BaseEntity {
 
     private String name;
 
+    public Speciality(String name) {
+        this.name=name;
+    }
+
     public String getName() {
         return name;
     }
